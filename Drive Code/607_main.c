@@ -11,6 +11,6 @@ task main()
 {
 	while(true){
 		getJoystickSettings(joystick); //gets the positions of all of the joysticks and buttons
-		drive(joystick.joy1_y1,joystick.joy1_y2); //calls the drive function located in 607_chassi with and the two arguments are the left and right joystick positions
+		drive(joystick.joy1_y1,-joystick.joy1_y2); //calls the drive function located in 607_chassi with and the two arguments are the left and right joystick positions. They're inverted because forward is a negative value on the joystick.
 	}
 }
