@@ -34,11 +34,19 @@ task main()
 			rightPower=joystick.joy1_y2;
 		else rightPower=0;
 		drive(leftPower,-rightPower); //calls the drive function located in 607_chassi with and the two arguments are the left and right joystick positions. They're inverted because forward is a negative value on the joystick.
-		if(joystick.joy2_y1>10)
-			lift(100); // calls the lift method in 607_manipulator using the 2nd joystick's y1 value
+		if(joy2Btn())
+			lift(50,0);
+		else if(joy2Btn())
+			lift(-50,0);
+		else if(joy2Btn())
+			lift(0,50);
+		else if(joy2Btn())
+			lift(0,-50);
+		else if(joystick.joy2_y1>10)
+			lift(100,100); // calls the lift method in 607_manipulator using the 2nd joystick's y1 value
 		else if(joystick.joy2_y1<-10)
-				lift(-100);
-		else lift(0);
+				lift(-100,-100);
+		else lift(0,0);
 		if(joy2Btn(0)){ //turns the spinner on and off with the one button
 			toggleSpinning(-1); //calls toggleSpinning in 607_manipulator with negative direction
 		}

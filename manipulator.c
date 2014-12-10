@@ -2,10 +2,11 @@
 */
 int spinning=0; // -1 backwards, 0 stopped, 1 forwards
 int hookVal; //current position of the hook servo
-void lift(int power){ //function to power the lift motors
-	motor[rightLift]=power;
-	motor[leftLift]=power;
+void lift(int rpower, int lpower){ //function to power the lift motors
+	motor[rightLift]=rpower;
+	motor[leftLift]=lpower;
 }
+
 void toggleSpinning(int direction){
 	spinning=direction;
 }
