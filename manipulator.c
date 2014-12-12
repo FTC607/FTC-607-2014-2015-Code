@@ -15,9 +15,8 @@ void spin(){//function to spin the motor that captures balls
 		motor[spinner]=100;//then turn it forward
 	else if(spinning==-1)//if the direction is negative
 		motor[spinner]=-100;//turn the motor backwards
-	else spinning=0; //otherwise turn it off
+	else motor[spinner]=0; //otherwise turn it off
 }
-
 void hookGrab(int change){//given the smaller joystick value
 	hookVal=hookVal+change; //set the new servo position to the original plus the modifier
 	motor[hook]=hookVal; //set the servo to the new position

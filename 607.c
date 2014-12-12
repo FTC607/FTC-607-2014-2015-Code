@@ -34,13 +34,13 @@ task main()
 			rightPower=joystick.joy1_y2;
 		else rightPower=0;
 		drive(leftPower,-rightPower); //calls the drive function located in 607_chassi with and the two arguments are the left and right joystick positions. They're inverted because forward is a negative value on the joystick.
-		if(joy2Btn())
+		if(joy2Btn(8))
 			lift(50,0);
-		else if(joy2Btn())
+		else if(joy2Btn(6))
 			lift(-50,0);
-		else if(joy2Btn())
+		else if(joy2Btn(7))
 			lift(0,50);
-		else if(joy2Btn())
+		else if(joy2Btn(5))
 			lift(0,-50);
 		else if(joystick.joy2_y1>10)
 			lift(100,100); // calls the lift method in 607_manipulator using the 2nd joystick's y1 value
