@@ -26,24 +26,36 @@ void loopmain()
 {
 		getJoystickSettings(joystick); //gets the positions of all of the joysticks and buttons
 		//Threshold for Left Motor
-		if(joystick.joy1_y1>10) //if the left, driver joystick is positive
-			leftPower=joystick.joy1_y1; //set the power for the left motor to the joystick value-- It will be positive
-		else if(joystick.joy1_y1<-10) //or if the left, driver joystick is negative
-			leftPower=joystick.joy1_y1; //set the power for the left motor to the joystick value--It will be negative
+		if(abs(joystick.joy1_y1)>10) //if the left joystick's magnitude is greater than 10
+			leftPower=joystick.joy1_y1; //set the power for the left motor to the joystick value
 		else leftPower=0; //Otherwise the power will be 0
 		//Threshold for Right Motor
-		if(joystick.joy1_y2>10) //if the right, driver joystick is positive
-			rightPower=joystick.joy1_y2; //set the power for the right motor to the joystick value--It will be positive
-		else if(joystick.joy1_y2<-10) //or if the right, driver joystick is positive
-			rightPower=joystick.joy1_y2; //set the power for the right motor to the joystick value--It will be negative
+		if(abs(joystick.joy1_y2)>10) //if the right joystick's magnitude is greater than 10
+			rightPower=joystick.joy1_y2; //set the power for the right motor to the joystick value
 		else rightPower=0; //Otherwise the power will be 0
 		drive(leftPower,rightPower); //calls the drive function located in chassi.The two arguments are the left and right joystick positions which are assigned in the above code
 		//Threshold and Individual Control of the lift
+<<<<<<< HEAD
 		if(joystick.joy2_y1>10)
 				//lift(joystick.joy2_y1);
 		if(joystick.joy2_y2<-10)
 				//lift(joystick.joy2_y1);
 	 lift(5);
+=======
+		if(joy2Btn(7)) //if the manipulator driver hits the top right trigger
+			lift(50,0); //call lift in manipulator. The right side will be forward and the left side will be off
+		else if(joy2Btn(5)) //or if the manipulator driver hits the bottom right trigger
+			lift(-50,0); //call lift in manipulator. The right side will be negative and the left side will be off
+		else if(joy2Btn(8)) //or if the manipualtor driver hits the top left trigger
+			lift(0,50); //call lift in manipulator. The right side will be off and the left side will be positive
+		else if(joy2Btn(6)) //or if the manipulator driver hits the bottom left trigge
+			lift(0,-50); //call lift in manipulator. The right side will be off and the left side will be negative
+		else if(joystick.joy2_y1>10) //or if the manipulator's left joystick is forward
+			lift(100,100); // calls the lift method in manipulator and have the lift go up
+		else if(joystick.joy2_y1<-10) //or if the manipulator's left joystick is negative
+				lift(-100,-100); //calls the lift method in manipulator and have the lift go down
+		else lift(0,0); //if none of the above happen, the lift is off
+>>>>>>> origin/master
 		if(joy2Btn(1)){ //turns the spinner on and off with the one button
 			toggleSpinning(-1); //calls toggleSpinning in 607_manipulator with negative direction
 		}
