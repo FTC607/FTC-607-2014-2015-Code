@@ -18,3 +18,6 @@ void spin(){//function to spin the motor that captures balls
 		motor[spinner]=-100;//turn the motor backwards
 	else motor[spinner]=0; //otherwise turn it off
 }
+void rotate(int speed){
+	motor[arm]=speed;
+}
