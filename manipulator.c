@@ -1,13 +1,11 @@
 /* Contains all the code for the manipulator. These functions will be called by 607_main
 */
 int spinning=0; // -1 backwards, 0 stopped, 1 forwards
-float hookVal; //current position of the hook servo
-bool doorOpen=false; //stores the current value of the door servo
-int openDoor=0; //the servo value when the door is open
-int closedDoor=0; //the servo value when the door is closed
-void lift(int rpower, int lpower){ //function to power the lift motors
-	motor[rightLift]=rpower; //the right motor is set to the given right power
- 	motor[leftLift]=lpower; //the left motor is set to the given left power
+void lift(int power){ //function to power the lift motors
+	motor[bottomRight]=power;
+	motor[bottomLeft]=power;
+	motor[topRight]=power;
+	motor[topLeft]=power;
 }
 
 void toggleSpinning(int direction){
@@ -19,15 +17,4 @@ void spin(){//function to spin the motor that captures balls
 	else if(spinning==-1)//if the direction is negative
 		motor[spinner]=-100;//turn the motor backwards
 	else motor[spinner]=0; //otherwise turn it off
-}
-void hookGrab(float change){//given the smaller joystick value
-	hookVal=hookVal+change; //set the new servo position to the original plus the modifier
-	servo[hook]=(int)hookVal; //set the servo to the new position
-}
-
-void toggleDoor(){ //toggles the door between open and closed
-	doorOpen=!doorOpen; //sets the boolean to whatever it currently isn't
-	if(doorOpen) //then if it's true
-		servo[door]=openDoor; //set the door to open
-	else servo[door]=closedDoor; //otherwise it's false and the door will be set to closed
 }
