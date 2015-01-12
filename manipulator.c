@@ -1,6 +1,7 @@
 /* Contains all the code for the manipulator. These functions will be called by 607_main
 */
 int spinning=0; // -1 backwards, 0 stopped, 1 forwards
+bool doorOpen=false;
 void lift(int power){ //function to power the lift motors
 	motor[bottomRight]=power;
 	motor[bottomLeft]=power;
@@ -20,4 +21,10 @@ void spin(){//function to spin the motor that captures balls
 }
 void rotate(int speed){
 	motor[arm]=speed;
+}
+void toggleDoor(){
+	doorOpen=!doorOpen;
+	if(doorOpen)
+			servo[door]=128;
+	else servo[door]=0;
 }
