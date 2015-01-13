@@ -1,7 +1,7 @@
 #pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTServo,  none)
 #pragma config(Hubs,  S2, HTMotor,  HTMotor,  none,     none)
-#pragma config(Sensor, S1,     ,               sensorI2CMuxController)
-#pragma config(Sensor, S2,     ,               sensorI2CMuxController)
+#pragma config(Sensor, S3,     backIR,         sensorHiTechnicIRSeeker1200)
+#pragma config(Sensor, S4,     leftIR,         sensorHiTechnicIRSeeker1200)
 #pragma config(Motor,  motorA,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorB,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorC,           ,             tmotorNXT, openLoop)
@@ -13,7 +13,7 @@
 #pragma config(Motor,  mtr_S2_C1_2,     topRight,      tmotorTetrix, openLoop, reversed)
 #pragma config(Motor,  mtr_S2_C2_1,     spinner,       tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S2_C2_2,     arm,           tmotorTetrix, openLoop)
-#pragma config(Servo,  srvo_S1_C3_1,    door,                 tServoContinuousRotation)
+#pragma config(Servo,  srvo_S1_C3_1,    door,                 tServoStandard)
 #pragma config(Servo,  srvo_S1_C3_2,    servo2,               tServoNone)
 #pragma config(Servo,  srvo_S1_C3_3,    servo3,               tServoNone)
 #pragma config(Servo,  srvo_S1_C3_4,    servo4,               tServoNone)
@@ -47,9 +47,9 @@ void loopmain()
 drive(leftPower,rightPower); //calls the drive function located in chassis.The two arguments are the left and right joystick positions which are assigned in the above code
 
 	 if(joystick.joy2_y2>20)
-				rotate(70);
+				rotate(-joystick.joy2_y2+20);
 		else if(joystick.joy2_y2<-20)
-				rotate(-70);
+				rotate(-joystick.joy2_y2-20);
 	 else rotate(0);
 
 		//Threshold and Individual Control of the lift
@@ -76,8 +76,9 @@ task main()
 {
 	while(true)
 	{
-		//loopmain();
-		motor[spinner]=100;
+		loopmain();
+		nxtDisplayTextLine(0,"%01d",SensorValue[backIR]);
+		nxtDisplayTextLine(1,"%01d",SensorValue[leftIR]);
 	}
 
 }

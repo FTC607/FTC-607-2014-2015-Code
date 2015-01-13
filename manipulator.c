@@ -25,6 +25,6 @@ void rotate(int speed){
 void toggleDoor(){
 	doorOpen=!doorOpen;
 	if(doorOpen)
-			servo[door]=128;
-	else servo[door]=0;
+			servo[door]=28;
+	else servo[door]=201;
 }
