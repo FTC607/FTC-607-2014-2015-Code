@@ -1,12 +1,12 @@
 #pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTServo,  none)
 #pragma config(Hubs,  S2, HTMotor,  HTMotor,  none,     none)
-#pragma config(Sensor, S1,     ,               sensorI2CMuxController)
-#pragma config(Sensor, S2,     ,               sensorI2CMuxController)
+#pragma config(Sensor, S3,     backIR,         sensorHiTechnicIRSeeker1200)
+#pragma config(Sensor, S4,     leftIR,         sensorHiTechnicIRSeeker1200)
 #pragma config(Motor,  motorA,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorB,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorC,           ,             tmotorNXT, openLoop)
-#pragma config(Motor,  mtr_S1_C1_1,     leftDrive,     tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S1_C1_2,     rightDrive,    tmotorTetrix, openLoop, reversed)
+#pragma config(Motor,  mtr_S1_C1_1,     leftDrive,     tmotorTetrix, openLoop, reversed)
+#pragma config(Motor,  mtr_S1_C1_2,     rightDrive,    tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C2_1,     topLeft,       tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C2_2,     bottomLeft,    tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S2_C1_1,     bottomRight,   tmotorTetrix, openLoop, reversed)
@@ -33,4 +33,43 @@ void initializeRobot(){
 task main(){
   initializeRobot();
   waitForStart();
+  if(SensorValue[backIR]>3&&SensorValue[backIR]<7){
+		drive(100,100);
+		sleep(4000);
+		rotate(50);
+		sleep(500);
+		rotate(0);
+		drive(0,0);
+  }
+	else{
+		drive(100,100);
+		sleep(1000);
+		drive(100,-100);
+		sleep(500);
+		drive(100,100);
+		sleep(500);
+		drive(0,0);
+		if(SensorValue[leftIR]>3&&SensorValue[leftIR]<7){
+			drive(-100,100);
+			sleep(500);
+			drive(100,100);
+			sleep(2000);
+			rotate(50);
+			sleep(500);
+			rotate(0);
+			drive(0,0);
+		}
+		else(
+			drive(100,100);
+			sleep(1000);
+			drive(-100,100);
+			sleep(500);
+			drive(100,100);
+			sleep(2000);
+			rotate(50);
+			sleep(500);
+			rotate(0);
+			drive(0,0);
+
+	}
 }
