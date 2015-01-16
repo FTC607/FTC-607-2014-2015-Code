@@ -77,7 +77,11 @@ task main()
 	while(true)
 	{
 		loopmain();
-		nxtDisplayTextLine(0,"%01d",SensorValue[backIR]);
+	//motor[topLeft]=25;
+	//motor[topRight]=25;
+	//motor[bottomLeft]=25;
+	//motor[bottomRight]=25;
+	nxtDisplayTextLine(0,"%01d",SensorValue[backIR]);
 		nxtDisplayTextLine(1,"%01d",SensorValue[leftIR]);
 	}
 
