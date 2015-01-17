@@ -69,8 +69,10 @@ drive(leftPower,rightPower); //calls the drive function located in chassis.The t
 			toggleSpinning(1); //calls the toggleSpinning in 607_manipulator with positive direction
 		}
 		spin(); //calls the spin function in 607_manipulator
-		if(joy2Btn(4))
+		if(joy2Btn(4)&&time1[T1]>1000){
+			ClearTimer(T1);
 			toggleDoor();
+		}
 }
 task main()
 {

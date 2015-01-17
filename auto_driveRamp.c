@@ -29,6 +29,6 @@ void initializeRobot(){
 }
 task main(){
   initializeRobot();
-  //waitForStart();
+  waitForStart();
  downRamp();
 }

@@ -14,9 +14,9 @@ void toggleSpinning(int direction){
 }
 void spin(){//function to spin the motor that captures balls
 	if(spinning==1)// if the direction is positive
-		motor[spinner]=100;//then turn it forward
+		motor[spinner]=50;//then turn it forward
 	else if(spinning==-1)//if the direction is negative
-		motor[spinner]=-100;//turn the motor backwards
+		motor[spinner]=-50;//turn the motor backwards
 	else motor[spinner]=0; //otherwise turn it off
 }
 void rotate(int speed){
