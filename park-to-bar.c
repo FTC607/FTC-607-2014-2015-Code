@@ -1,5 +1,7 @@
 #pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTServo,  none)
 #pragma config(Hubs,  S2, HTMotor,  HTMotor,  none,     none)
+#pragma config(Sensor, S3,     rt,             sensorHiTechnicIRSeeker1200)
+#pragma config(Sensor, S4,     HTSMUX,         sensorI2CCustom)
 #pragma config(Motor,  motorA,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorB,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorC,           ,             tmotorNXT, openLoop)
@@ -26,11 +28,95 @@
 #include "scoreTube.c"
 #include "downRamp.c"
 #include "drivers/hitechnic-sensormux.h"
+#include "drivers/lego-ultrasound.h"
+#include "drivers/hitechnic-irseeker-v2.h"
 
 void initializeRobot(){
   return;
 }
+
+const tMUXSensor LEGOUS = msensor_S4_4;
+const tMUXSensor HTIRS2 = msensor_S4_3;
+
 task main(){
+
+int dir_left = 0;
+int dir_right = 0;
+int _dirEnh, _strEnh;
+
+	//while(true)
+	//{
+	//	HTIRS2readEnhanced(HTIRS2, _dirEnh, _strEnh);
+	//	dir_right = SensorValue[rt];
+	//		eraseDisplay();
+	//		// display the info from the sensor
+ //   nxtDisplayTextLine(0, "right: %d", dir_right);
+ //   nxtDisplayTextLine(2, "left: %d", _dirEnh);
+
+ //   wait10Msec(100);
+	//}
+
+	 int dist = 0;
+
+	 int turnDist = 1380;
+
   initializeRobot();
   waitForStart();
+
+
+  dist = USreadDist(LEGOUS);
+	nxtDisplayTextLine(0, "Dist:  %3d cm", dist);
+
+	wait1Msec(50);
+
+  if(dist<=115)                                      //90 degrees
+  {
+  	while(dist > 50) // Moves forward until within 20 cm (stopDist)of first object
+		{
+			drive(-100, -100);
+			dist = USreadDist(LEGOUS);
+			wait1Msec(10);
+		}
+
+	  	drive(0,0);
+	  	wait1Msec(3000);
+	  	drive(0,-100);
+	  	wait1Msec(500);
+	  	drive(-100, -100);
+	  	wait1Msec(600);
+	  	drive(-100,0);
+	  	wait1Msec(400);
+	  	drive(-100,-100);
+	  	wait1Msec(2000);
+	  	drive(0,0);
+  }
+
+  else if(dist>115 && dist<180)                           //0 degrees
+  {
+
+	  nMotorEncoder[leftDrive] = 0;
+	  nMotorEncoder[rightDrive] = 0;
+
+	  while(dist > 35) // Moves forward until within 35 cm (stopDist)of first object
+		{
+			drive(-100, -100);
+			dist = USreadDist(LEGOUS);
+			wait1Msec(10);
+		}
+
+	  	drive(-100,0);
+	  	wait1Msec(1000);
+  }
+
+  else if(dist>=180)                                      //45 degree
+  {
+  	drive(-100, -100);
+  	wait1Msec(2000);
+  	drive(0, -100);
+  	wait1Msec(750);
+  	drive(-100, -100);
+  	wait1Msec(1000);
+  	drive(0,0);
+  }
+
 }

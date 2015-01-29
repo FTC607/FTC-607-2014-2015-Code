@@ -33,9 +33,9 @@ void initializeRobot(){
 task main(){
   initializeRobot();
   waitForStart();
-  sleep(1000);
+  Sleep(1000);
   	nxtDisplayTextLine(0,"%01d",SensorValue[backIR]);
-		//sleep(10000);
+		//Sleep(10000);
   	//nxtDisplayTextLine(1,"%01d",SensorValue[leftIR]);
 
   if(SensorValue[backIR]==4||SensorValue[backIR]==5){
@@ -44,40 +44,40 @@ task main(){
 		drive(-100,100);
 		Sleep(800);
 		drive(100,100);
-		sleep(500);
+		Sleep(500);
 		drive(100,-100);
-		sleep(500);
+		Sleep(500);
 		drive(100,100);
-		sleep(2000);
+		Sleep(2000);
 		drive(-100,100);
-		sleep(500);
+		Sleep(500);
 		drive(-100,-100);
-		sleep(500);
+		Sleep(500);
 		drive(100,100);
-		sleep(1000);
+		Sleep(1000);
 		drive(0,0);
   }
 	else if(SensorValue[backIR]==2){
 			drive(100,100);
-			sleep(3000);
+			Sleep(3000);
 			drive(-100,-100);
-			sleep(500);
+			Sleep(500);
 			drive(100,100);
-			sleep(1000);
+			Sleep(1000);
 			drive(0,0);
 	}
 		else if(SensorValue[backIR]==3){
 			drive(100,100);
-			sleep(1500);
+			Sleep(1500);
 			drive(100,-100);
-			sleep(500);
+			Sleep(500);
 			drive(100,100);
-			sleep(1000);
+			Sleep(1000);
 			drive(-100,-100);
-			sleep(750);
+			Sleep(750);
 			drive(100,100);
-			sleep(1250);
+			Sleep(1250);
 			drive(0,0);
 		}
-	//else sleep(10000);
+	//else Sleep(10000);
 	}
